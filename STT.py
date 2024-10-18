@@ -2,11 +2,12 @@
 # `pip install assemblyai` (Windows)
 
 import assemblyai as aai
+import config
 
-aai.settings.api_key = "0194f45e04ad4c7f8b0cde69f1e23ae0"
+aai.settings.api_key = config.assemblyai_key
 transcriber = aai.Transcriber()
 
-transcript = transcriber.transcribe("https://assembly.ai/news.mp4")
+# transcript = transcriber.transcribe("https://assembly.ai/news.mp4")
 # transcript = transcriber.transcribe("./my-local-audio-file.wav")
 
 print(transcript.text)
