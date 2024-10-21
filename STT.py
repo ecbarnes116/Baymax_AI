@@ -4,14 +4,8 @@ from pvrecorder import PvRecorder
 import wave
 import struct
 from datetime import datetime
-import os
 
-if not os.path.exists("audio_files"):
-    os.mkdir("audio_files")
-if not os.path.exists("transcript_files"):
-    os.mkdir("transcript_files")
-
-
+aai.settings.api_key = config.ASSEMBLYAI_KEY
 
 def record_audio():
     date_time = datetime.now().strftime("%Y-%m-%d_%H;%M;%S")
@@ -44,9 +38,7 @@ def record_audio():
     return audio_file
 
 
-
-def STT(audio_file, save=True):
-    aai.settings.api_key = config.ASSEMBLYAI_KEY
+def transcribe_audio(audio_file, save=True):
     transcriber = aai.Transcriber()
 
     audio_file_path = f"audio_files/{audio_file}.wav"
@@ -62,9 +54,4 @@ def STT(audio_file, save=True):
             f.write(transcript.text)
 
     return transcript.text
-
-
-
-audio_file = record_audio()
-trancript = STT(audio_file=audio_file)
 
