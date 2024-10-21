@@ -1,6 +1,10 @@
 # API Keys
 config.py
 
+# Data
+audio_files/
+transcript_files/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
