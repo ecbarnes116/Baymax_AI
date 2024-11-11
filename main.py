@@ -1,5 +1,6 @@
 import os
 import STT
+import SA
 import chatbot
 
 if not os.path.exists("audio_files"):
@@ -20,7 +21,8 @@ response, conversation = chatbot.get_response(transcript)
 # from of a continuing conversation
 
 # Get emotions from response
-
+text = ''
+sentiment = SA.get_sentiment(text)
 
 # Play output audio + animation based on response
 

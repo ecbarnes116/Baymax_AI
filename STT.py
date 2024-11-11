@@ -5,6 +5,10 @@ import wave
 import struct
 from datetime import datetime
 
+# Speech-to-Text
+
+# https://www.assemblyai.com/app/
+
 aai.settings.api_key = config.ASSEMBLYAI_KEY
 
 def record_audio():
