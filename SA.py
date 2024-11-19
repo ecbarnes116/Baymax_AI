@@ -4,18 +4,12 @@ import pdb
 # Sentiment Analysis
 
 def get_sentiment(text):
-    classifier = pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None)
+    classifier = pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None, device=0)
 
-    sentences = ["I am not having a great day"]
-
-    model_outputs = classifier(sentences)
-
-    print(sentences)
-    print(model_outputs[0])
     # produces a list of dicts for each of the labels
+    model_outputs = classifier(text)
 
-    pdb.set_trace()
+    # print(model_outputs[0])
 
     return model_outputs
 
-sentiment = get_sentiment('')
