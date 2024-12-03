@@ -1,12 +1,11 @@
 import assemblyai as aai
-import config
 from pvrecorder import PvRecorder
 import wave
 import struct
 from datetime import datetime
+import config
 
 # Speech-to-Text
-
 # https://www.assemblyai.com/app/
 
 aai.settings.api_key = config.ASSEMBLYAI_KEY
@@ -57,5 +56,5 @@ def transcribe_audio(audio_file, save=True):
         with open(transcript_path, 'w') as f:
             f.write(transcript.text)
 
-    return transcript.text
+    return transcript.text, audio_file
 

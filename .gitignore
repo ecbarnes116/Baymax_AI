@@ -4,6 +4,13 @@ config.py
 # Data
 audio_files/
 transcript_files/
+TTS_output/
+baymax_old_audio/
+baymax_new_audio/
+baymax_voice_model
+*.zip
+*.wav
+*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
