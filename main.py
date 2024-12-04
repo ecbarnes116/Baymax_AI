@@ -3,6 +3,9 @@ import STT
 import TTS
 import SA
 import chatbot
+import eval
+
+from datetime import datetime
 
 def do_animation(emotion):
     return
@@ -10,10 +13,10 @@ def do_animation(emotion):
 # Conversaion
 # https://github.com/Azure/openai-samples/blob/main/Basic_Samples/Chat/chatGPT_managing_conversation.ipynb
 
-if not os.path.exists("audio_files"):
-    os.mkdir("audio_files")
-if not os.path.exists("transcript_files"):
-    os.mkdir("transcript_files")
+if not os.path.exists("speech_input"):
+    os.mkdir("speech_input")
+if not os.path.exists("speech_transcripts"):
+    os.mkdir("speech_transcripts")
 if not os.path.exists("TTS_output"):
     os.mkdir("TTS_output")  
 
@@ -59,14 +62,20 @@ while True:
     # Send transcription with conversation to chatbot
     response = chatbot.get_response(messages, max_response_tokens)
 
+    # Append response to conversation
+    messages.append({"role": "assistant", "content": response})
+    chatbot.print_conversation(messages)
+
     # Get TTS output and play voice
-    file_name = "output_voice"
+    file_name = datetime.now().strftime("%Y-%m-%d_%H;%M;%S")
     speech = TTS.get_TTS(response, file_name)
 
     # TODO: Play Baymax voice
+    # Ow! I hurt my knee.
 
-    messages.append({"role": "assistant", "content": response})
-    chatbot.print_conversation(messages)
+
+    # Get BLEU score after every response
+    bleu_score = eval.get_BLEU_score(response)
 
     # Get emotions from response
     sentiment_distribution = SA.get_sentiment(response) # Probably will only input one string, so I expect only one dict in the output

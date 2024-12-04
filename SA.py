@@ -10,8 +10,8 @@ def get_sentiment(text):
     model_outputs = classifier(text)
 
     print(model_outputs[0][0])
-    print(model_outputs[0][1])
-    print(model_outputs[0][2])
+    # print(model_outputs[0][1])
+    # print(model_outputs[0][2])
     print()
 
     return model_outputs

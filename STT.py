@@ -10,11 +10,12 @@ import config
 
 aai.settings.api_key = config.ASSEMBLYAI_KEY
 
+
 def record_audio():
     date_time = datetime.now().strftime("%Y-%m-%d_%H;%M;%S")
 
     audio_file = date_time
-    audio_file_path = f"audio_files/{audio_file}.wav"
+    audio_file_path = f"speech_input/{audio_file}.wav"
 
     recorder = PvRecorder(device_index=-1, frame_length=512)
     audio = []
@@ -44,14 +45,14 @@ def record_audio():
 def transcribe_audio(audio_file, save=True):
     transcriber = aai.Transcriber()
 
-    audio_file_path = f"audio_files/{audio_file}.wav"
+    audio_file_path = f"speech_input/{audio_file}.wav"
 
     transcript = transcriber.transcribe(audio_file_path)
 
     print(transcript.text)
 
     if save:
-        transcript_path = f"transcript_files/{audio_file}.txt"
+        transcript_path = f"speech_transcripts/{audio_file}.txt"
 
         with open(transcript_path, 'w') as f:
             f.write(transcript.text)
