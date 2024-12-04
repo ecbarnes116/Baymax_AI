@@ -2,6 +2,7 @@
 config.py
 
 # Data
+trash/
 audio_files/
 transcript_files/
 TTS_output/
