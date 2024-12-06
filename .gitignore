@@ -13,6 +13,7 @@ baymax_voice_model
 *.wav
 *.png
 *.txt
+*.mp4
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

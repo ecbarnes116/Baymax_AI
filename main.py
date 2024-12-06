@@ -10,7 +10,7 @@ from datetime import datetime
 def do_animation(emotion):
     return
 
-# Conversaion
+# Conversation
 # https://github.com/Azure/openai-samples/blob/main/Basic_Samples/Chat/chatGPT_managing_conversation.ipynb
 
 if not os.path.exists("speech_input"):
@@ -39,9 +39,9 @@ chatbot.print_conversation(messages)
 
 while True:
     # Record audio and transcribe
-    # input_audio_file = STT.record_audio()
-    # transcript, file_name = STT.transcribe_audio(audio_file=input_audio_file)
-    transcript = input('Enter your prompt here:\n>>> ')
+    input_audio_file = STT.record_audio()
+    transcript, file_name = STT.transcribe_audio(audio_file=input_audio_file)
+    # transcript = input('Enter your prompt here:\n>>> ')
     user_message = transcript
 
     if 'satisfied' in user_message.lower():

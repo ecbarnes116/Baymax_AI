@@ -31,12 +31,12 @@ def get_TTS(input_text, file_name):
 	output_file = f"TTS_output/{file_name}.wav"
 
 
-	# baymax_voice = "s3://voice-cloning-zero-shot/070256ca-4825-499a-846a-beeab92d9dfc/original/manifest.json"
-	default_voice = "s3://voice-cloning-zero-shot/d82d246c-148b-457f-9668-37b789520891/adolfosaad/manifest.json"
+	baymax_voice = "s3://voice-cloning-zero-shot/070256ca-4825-499a-846a-beeab92d9dfc/original/manifest.json"
+	# default_voice = "s3://voice-cloning-zero-shot/d82d246c-148b-457f-9668-37b789520891/adolfosaad/manifest.json"
 
 	# input_text = "I will scan you now. ...... Scan complete. You have a slight epidermal abrasion on your forearm. I suggest an anti-bacterial spray."
      
-	options = TTSOptions(voice=default_voice)
+	options = TTSOptions(voice=baymax_voice)
 	audio_chunks = client.tts(text=input_text, options=options)
 	save_audio_wave(audio_chunks, output_file=output_file)
 	play_speech(output_file)
