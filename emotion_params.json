@@ -1,0 +1,26 @@
+{
+    "head roll": {
+        "animation_number": 2,
+        "wait_time": 9
+    },
+    "Happy": {
+        "animation_number": 1,
+        "wait_time": 2.5
+    },
+    "Sad": {
+        "animation_number": 2,
+        "wait_time": 3.0
+    },
+    "Angry": {
+        "animation_number": 3,
+        "wait_time": 1.8
+    },
+    "Surprised": {
+        "animation_number": 4,
+        "wait_time": 2.0
+    },
+    "Confused": {
+        "animation_number": 5,
+        "wait_time": 2.2
+    }
+  }

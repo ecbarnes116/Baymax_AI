@@ -1,4 +1,7 @@
 import os
+import time
+import json
+import requests
 import STT
 import TTS
 import SA
@@ -7,8 +10,40 @@ import eval
 
 from datetime import datetime
 
-def do_animation(emotion):
-    return
+def play_animation(emotion_name):
+    port=59224
+    base_url = f'http://localhost:{port}/PlaybackState/'
+
+    # get emotion params (animation_number, wait_time)
+    params = emotion_params.get(emotion_name)
+
+    animation_number = params['animation_number']
+    wait_time = params['wait_time']
+
+    try:
+        request_params = {
+            'selectedAnimationIndex': animation_number,
+            'playbackTimeInMS': 2,
+            'isPlaying': True
+        }
+
+        response = requests.put(base_url, json=request_params)
+        response.raise_for_status()
+
+        time.sleep(wait_time)
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error triggering animation: {e}")
+    
+    print("done playing animation")
+
+
+
+# Load emotion params at beginning to be accessed later
+# Need to restart main.py when this file is updated
+with open("emotion_params.json", "r") as file:
+    emotion_params = json.load(file)
+
 
 # Conversation
 # https://github.com/Azure/openai-samples/blob/main/Basic_Samples/Chat/chatGPT_managing_conversation.ipynb
@@ -74,8 +109,9 @@ while True:
     # Ow! I hurt my knee.
 
 
-    # Get BLEU score after every response
-    bleu_score = eval.get_BLEU_score(response)
+
+    # # Get BLEU score after every response
+    # bleu_score = eval.get_BLEU_score(response)
 
     # Get emotions from response
     sentiment_distribution = SA.get_sentiment(response) # Probably will only input one string, so I expect only one dict in the output
@@ -85,6 +121,8 @@ while True:
     emotion = sentiment_distribution[0]['label']
     emotion_score = sentiment_distribution[0]['score']
 
+    # TODO: Play animations
     # Play output audio + animation based on response
-    do_animation(emotion) # Empty function - outside the scope of this project
+    # play_animation(emotion) # Empty function - outside the scope of this project
+    play_animation('head roll') # Empty function - outside the scope of this project
 

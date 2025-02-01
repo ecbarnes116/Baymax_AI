@@ -3,6 +3,7 @@ config.py
 
 # Data
 trash/
+REPORT/
 audio_files/
 transcript_files/
 TTS_output/
@@ -10,9 +11,10 @@ baymax_old_audio/
 baymax_new_audio/
 baymax_voice_model
 *.zip
+*.txt
 *.wav
 *.png
-*.txt
+*.jpg
 *.mp4
 
 # Byte-compiled / optimized / DLL files
